@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating the AI Landscape: An Interactive Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A single-page application with a fixed left-hand sidebar for navigation. The main content area is divided into six thematic modules: 1. AI Fundamentals, 2. Conversational AI, 3. Deep Dive into LLMs, 4. AI at Our Company, 5. Responsible & Effective Use, 6. Mastering the Craft. This structure provides a logical, guided learning path for new users, which is more effective than a simple slide deck format. It encourages exploration while maintaining a clear flow from foundational concepts to practical application and skills. -->
+    <!-- Visualization & Content Choices: 
+        - What is AI?: Inform -> Formatted text blocks and lists -> Clarity & Readability -> HTML/CSS.
+        - Key Subfields of AI: Inform/Organize -> Interactive Doughnut Chart -> Visualize components of a whole -> Chart.js.
+        - Narrow vs General AI: Compare -> Side-by-side info cards -> Direct comparison -> HTML/CSS.
+        - How Chat Interfaces Work: Organize/Inform -> HTML/CSS process flow diagram -> Visualize a sequence -> HTML/CSS with Unicode icons.
+        - Benefits of Chat: Compare/Inform -> Interactive Bar Chart -> Emphasize a list of benefits visually -> Chart.js.
+        - LLM Limitations: Organize/Inform -> Grid of cards with icons -> Highlight critical warnings -> HTML/CSS with Unicode icons.
+        - Gemini vs Azure OpenAI: Compare -> Styled Comparison Table -> Critical for compliance, needs to be clear -> HTML/CSS.
+        - Do's and Don'ts: Compare -> Two-column card layout -> Clear visual separation of allowed/disallowed actions -> HTML/CSS.
+        - Prompting Techniques: Organize -> Interactive tabs -> Condense a large amount of related information, encourage interaction -> HTML/CSS/JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .nav-link.active {
+            background-color: #e2e8f0; /* slate-200 */
+            color: #1e293b; /* slate-800 */
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-btn.active {
+            background-color: #334155; /* slate-700 */
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="flex">
+        <aside class="w-64 fixed top-0 left-0 h-screen bg-white border-r border-slate-200 p-6 hidden lg:block">
+            <h1 class="text-xl font-bold text-slate-800 mb-8">AI Short Course</h1>
+            <nav id="desktop-nav" class="space-y-2">
+                <a href="#fundamentals" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">1. AI Fundamentals</a>
+                <a href="#conversational" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">2. Conversational AI</a>
+                <a href="#llms" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">3. Deep Dive into LLMs</a>
+                <a href="#company-ai" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">4. AI at Our Company</a>
+                <a href="#responsible-use" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">5. Responsible & Effective Use</a>
+                <a href="#prompting" class="nav-link block px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100">6. Mastering the Craft</a>
+            </nav>
+        </aside>
+
+        <main class="lg:ml-64 w-full p-4 md:p-8 lg:p-12">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold text-slate-900 mb-2">Navigating the AI Landscape</h1>
+                <p class="text-lg text-slate-600">Your interactive guide to understanding and responsibly using Artificial Intelligence.</p>
+            </header>
+
+            <section id="fundamentals" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">1. AI Fundamentals</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">What is Artificial Intelligence (AI)?</h3>
+                    <p class="mb-4">At its core, AI refers to computational systems performing tasks typically associated with human intelligence. This is a broad field of computer science building machines that can reason, learn, and act. It encompasses various technologies for advanced functions like language interpretation, data analysis, and providing recommendations.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-md">
+                            <h4 class="font-semibold text-slate-700">Learning & Adaptation</h4>
+                            <p class="text-sm">Unlike traditional programs, AI systems learn and adapt from data, continuously analyzing datasets to identify patterns and improve performance over time.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-md">
+                            <h4 class="font-semibold text-slate-700">Types of Intelligence</h4>
+                            <p class="text-sm">All current AI is "Narrow" (ANI), designed for specific tasks. "General" AI (AGI), which would be human-like in intelligence, is still theoretical.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Subfields of AI</h3>
+                        <p class="mb-4">AI is an umbrella term for many areas of study. This chart shows some of the core components that make up the field of AI, each with its own focus and applications.</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="subfieldsChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">AI in Our Daily Lives</h3>
+                        <p class="mb-4">AI is not a future concept; it's already deeply embedded in our daily lives. From navigation apps to online shopping, its applications are everywhere.</p>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-start"><span class="mr-2 text-teal-600">✔</span> <strong>Digital Assistants:</strong> Siri, Alexa, Google Assistant.</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-600">✔</span> <strong>Social Media:</strong> Personalized content feeds.</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-600">✔</span> <strong>Navigation:</strong> Google Maps & Waze real-time traffic.</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-600">✔</span> <strong>Fraud Prevention:</strong> Banks analyzing transaction patterns.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conversational" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">2. Conversational AI</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Why Do AI Systems Use Chat Interfaces?</h3>
+                    <p class="mb-4">Chat interfaces have become the standard for interacting with many AI systems because they are intuitive. They leverage Conversational User Interfaces (CUIs) to enable interaction using natural language, making complex technology accessible to everyone.</p>
+                </div>
+                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">How Chat Interfaces Work</h3>
+                        <p class="mb-4">What feels like a simple conversation is actually a rapid, multi-step process.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <span class="text-2xl font-bold text-teal-600 mr-4">1</span>
+                                <div><h4 class="font-semibold">Input Processing</h4><p class="text-sm">System receives user input (text or voice).</p></div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-2xl font-bold text-teal-600 mr-4">2</span>
+                                <div><h4 class="font-semibold">Natural Language Understanding</h4><p class="text-sm">The AI deciphers the meaning and intent of the input.</p></div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-2xl font-bold text-teal-600 mr-4">3</span>
+                                <div><h4 class="font-semibold">Response Generation</h4><p class="text-sm">The AI generates a coherent, relevant response.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Benefits of Chat Interfaces</h3>
+                         <p class="mb-4">Using chat to interact with AI provides numerous advantages for both users and organizations, enhancing efficiency and accessibility.</p>
+                        <div class="chart-container h-80">
+                            <canvas id="benefitsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="llms" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">3. Deep Dive into LLMs</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Demystifying Large Language Models (LLMs)</h3>
+                    <p class="mb-4">Large Language Models (LLMs) are the advanced AI systems powering most modern conversational AI. They are trained on immense amounts of text data, allowing them to understand and generate human-like language with incredible sophistication. Their core technology is based on deep learning and a breakthrough "transformer architecture."</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Important Considerations: LLM Limitations</h3>
+                    <p class="mb-4">While powerful, LLMs have critical limitations you must understand to use them responsibly. Always apply your own judgment and critical thinking.</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-800 mb-2">🧠 Lack of Common Sense</h4>
+                            <p class="text-sm text-red-700">LLMs find statistical patterns, but they don't truly understand context or possess common-sense reasoning. Their outputs can be illogical.</p>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-800 mb-2">👻 Hallucinations</h4>
+                            <p class="text-sm text-red-700">LLMs can generate plausible-sounding but incorrect or completely fabricated information. Always verify critical facts.</p>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-800 mb-2">⚖️ Bias</h4>
+                            <p class="text-sm text-red-700">Trained on real-world data, LLMs can reflect and amplify societal biases. Review outputs for fairness.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="company-ai" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">4. AI at Our Company</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Crucial Data Usage Guidelines</h3>
+                    <p class="mb-4">Our company provides access to two powerful LLMs: Gemini and Azure OpenAI. It is <span class="font-bold text-red-600">absolutely critical</span> to use the correct tool for your data to ensure security and compliance. These guidelines are based on a deliberate risk management strategy.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="border-b-2 border-slate-300 p-4 bg-slate-100 text-slate-800">LLM Name</th>
+                                    <th class="border-b-2 border-slate-300 p-4 bg-slate-100 text-slate-800">Approved Data Usage</th>
+                                    <th class="border-b-2 border-slate-300 p-4 bg-slate-100 text-slate-800">Key Considerations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="border-b border-slate-200 p-4 font-bold text-teal-700">Gemini</td>
+                                    <td class="border-b border-slate-200 p-4"><span class="font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full">All data, including customer data</span></td>
+                                    <td class="border-b border-slate-200 p-4">Suitable for customer-facing apps and sensitive information. Has passed higher vetting and security protocols.</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border-b border-slate-200 p-4 font-bold text-blue-700">Azure OpenAI</td>
+                                    <td class="border-b border-slate-200 p-4"><span class="font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Internal data only</span></td>
+                                    <td class="border-b border-slate-200 p-4"><span class="font-bold text-red-600">DO NOT</span> input customer PII or any confidential external data. Use for internal drafting, coding, and research.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsible-use" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">5. Responsible & Effective Use</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">What You Can and Cannot Do</h3>
+                    <p class="mb-4">Follow these guidelines to ensure you are using our AI tools responsibly and in compliance with company policy.</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-bold text-green-700 mb-4">DO 👍</h4>
+                            <ul class="space-y-3">
+                                <li class="bg-green-50 p-3 rounded-lg"><strong class="text-green-800">Draft Internal Docs:</strong> Use Azure OpenAI for internal reports, emails, and summaries.</li>
+                                <li class="bg-green-50 p-3 rounded-lg"><strong class="text-green-800">Brainstorm Ideas:</strong> Use Azure OpenAI for internal project ideation.</li>
+                                <li class="bg-green-50 p-3 rounded-lg"><strong class="text-green-800">Handle Customer Data:</strong> Use Gemini for approved customer-facing applications, with proper oversight.</li>
+                                <li class="bg-green-50 p-3 rounded-lg"><strong class="text-green-800">Learn and Explore:</strong> Use either tool for general knowledge queries, following data rules.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-red-700 mb-4">DON'T 👎</h4>
+                            <ul class="space-y-3">
+                                <li class="bg-red-50 p-3 rounded-lg"><strong class="text-red-800">Mix Data:</strong> STRICTLY PROHIBITED to put sensitive customer data into Azure OpenAI.</li>
+                                <li class="bg-red-50 p-3 rounded-lg"><strong class="text-red-800">Blindly Trust:</strong> Do not make critical decisions without human verification of AI outputs.</li>
+                                <li class="bg-red-50 p-3 rounded-lg"><strong class="text-red-800">Infringe Copyright:</strong> Be mindful of intellectual property when using AI-generated content.</li>
+                                 <li class="bg-red-50 p-3 rounded-lg"><strong class="text-red-800">Assume Privacy:</strong> Do not input sensitive personal or external confidential info without approval.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">When to Consult the AI/Ops Team</h3>
+                    <p class="mb-4">Our AI/Operations team is here to help. This escalation path ensures complex or risky use cases get expert review. Please consult them if you are:</p>
+                     <ul class="list-disc list-inside text-blue-700 space-y-2">
+                        <li>Exploring a complex or novel application not covered by guidelines.</li>
+                        <li>Handling data types that are not explicitly covered.</li>
+                        <li>Using AI to inform high-impact or strategic business decisions.</li>
+                        <li>Observing performance issues, persistent bias, or inaccuracies.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="prompting" class="mb-16 space-y-8 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-slate-800 border-b pb-2">6. Mastering the Craft: Prompt Engineering</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">What is Prompt Engineering?</h3>
+                    <p class="mb-4">Prompt engineering is the art and science of crafting effective inputs ("prompts") to guide AI models toward your desired output. It’s the key to unlocking consistent, high-quality, and accurate results. Think of it as learning how to have a clear and precise conversation with the AI.</p>
+                    <h4 class="font-semibold text-slate-700 mb-2">Best Practices:</h4>
+                     <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li><strong>Be Specific & Provide Context:</strong> Long, detailed prompts are often better.</li>
+                        <li><strong>Give the Model Room to Think:</strong> Ask it to reason "step-by-step."</li>
+                        <li><strong>Quote Sources:</strong> Ask the model to cite sources to reduce hallucinations.</li>
+                        <li><strong>Clarify the Format:</strong> Tell it if you want a table, bullet points, etc.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Prompting Techniques</h3>
+                    <p class="mb-4">Explore these techniques to enhance your results. Click each tab to learn more.</p>
+                    <div id="tabs-container">
+                        <div class="border-b border-slate-200 mb-4">
+                            <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                                <button class="tab-btn active whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg bg-slate-100 hover:bg-slate-200" data-tab="zero-shot">Zero-Shot</button>
+                                <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg bg-slate-100 hover:bg-slate-200" data-tab="few-shot">Few-Shot</button>
+                                <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg bg-slate-100 hover:bg-slate-200" data-tab="chain-of-thought">Chain of Thought</button>
+                                <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg bg-slate-100 hover:bg-slate-200" data-tab="meta-prompting">Meta-Prompting</button>
+                            </nav>
+                        </div>
+                        <div id="tab-contents">
+                            <div id="zero-shot" class="tab-content active p-4 bg-slate-50 rounded-lg">
+                                <h5 class="font-bold text-slate-800">Zero-Shot Prompting</h5>
+                                <p class="text-slate-600">Asking the model to perform a task without giving it any examples. It relies solely on its pre-trained knowledge.</p>
+                                <p class="mt-2 text-sm text-slate-500 italic">Example: "Explain the concept of climate change in simple terms."</p>
+                            </div>
+                            <div id="few-shot" class="tab-content p-4 bg-slate-50 rounded-lg">
+                                <h5 class="font-bold text-slate-800">Few-Shot Prompting</h5>
+                                <p class="text-slate-600">Including a few examples in your prompt to guide the model on the desired format, tone, or style of the output.</p>
+                                <p class="mt-2 text-sm text-slate-500 italic">Example: "Translate 'hello' to French as 'bonjour'. Now translate 'goodbye'."</p>
+                            </div>
+                            <div id="chain-of-thought" class="tab-content p-4 bg-slate-50 rounded-lg">
+                                <h5 class="font-bold text-slate-800">Chain of Thought (CoT) Prompting</h5>
+                                <p class="text-slate-600">Encouraging the model to reason through a problem step-by-step before giving a final answer. This improves accuracy on complex tasks.</p>
+                                <p class="mt-2 text-sm text-slate-500 italic">Example: "First, identify the capital of France. Second, list its main tourist attractions. Combine this into a paragraph."</p>
+                            </div>
+                            <div id="meta-prompting" class="tab-content p-4 bg-slate-50 rounded-lg">
+                                <h5 class="font-bold text-slate-800">Meta Prompting</h5>
+                                <p class="text-slate-600">Asking the model to generate or refine its own prompt for a task. This can help you create a more effective prompt for future use.</p>
+                                <p class="mt-2 text-sm text-slate-500 italic">Example: "Create a detailed prompt that will cause you to generate a comprehensive report on renewable energy sources."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            const subfieldsChartCtx = document.getElementById('subfieldsChart').getContext('2d');
+            new Chart(subfieldsChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision', 'Robotics'],
+                    datasets: [{
+                        label: 'Key Subfields of AI',
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: ['#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4', '#ccfbf1'],
+                        borderColor: '#f8fafc',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+
+            const benefitsChartCtx = document.getElementById('benefitsChart').getContext('2d');
+            new Chart(benefitsChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Efficiency', 'Accessibility', 'Scalability', 'Cost Savings', 'Engagement'],
+                    datasets: [{
+                        label: 'Impact Level',
+                        data: [90, 85, 95, 80, 88],
+                        backgroundColor: '#2dd4bf',
+                        borderColor: '#14b8a6',
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                             grid: { display: false },
+                             ticks: { display: false }
+                        },
+                        y: {
+                           grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const tabsContainer = document.getElementById('tabs-container');
+            const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
+            const tabContents = tabsContainer.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        content.classList.toggle('active', content.id === tabId);
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
